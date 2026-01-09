@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Memories</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="videos/vid4.mp4" type="video/mp4">
+</video>
+
+<div class="bg-overlay"></div>
+
+<div class="content">
+  <!-- orbit, phrases, memory, etc -->
+</div>
+
+
+<!-- Floating lights -->
+<div class="particles"></div>
+
+<div class="orbit-text left">
+  “A più di 9.000 chilometri di distanza”
+</div>
+
+<div class="orbit-text center">
+  “Ciò che Viviamo ”
+</div>
+
+<div class="orbit-text right">
+  “Continua e continuerà a girarmi per la testa.”
+</div>
+
+<div class="memory-orbit">
+  <div class="orbit">
+
+    <!-- IMAGE -->
+    <div class="memory-ball">
+      <img src="images/img1.jpg">
+    </div>
+
+   <div class="memory-ball">
+     <img src="images/img2.jpg" />
+   </div>
+
+   <div class="memory-ball">
+      <video src="videos/vid1.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+    <div class="memory-ball">
+      <img src="images/img3.jpg">
+    </div>
+
+    <div class="memory-ball">
+      <img src="images/img4.jpg">
+    </div>
+
+    <div class="memory-ball">
+      <img src="images/img5.jpg">
+    </div>
+  
+<div class="memory-ball">
+  <video
+    src="videos/vid3.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    class="video-3"
+  ></video>
+</div>
+
+    <div class="memory-ball">
+      <img src="images/img6.jpg">
+    </div>
+
+    <div class="memory-ball">
+      <img src="images/img7.jpg">
+    </div>
+
+    <!-- VIDEOS -->
+
+    <div class="memory-ball">
+      <video src="videos/vid2.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+  
+
+  </div>
+</div>
+
+<div class="memory-orbit">
+  <div class="orbit">
+    <!-- memory-balls aquí -->
+  </div>
+</div>
+
+<div id="memoryFocus"></div>
+<div id="memoryQuote" class="memory-quote"></div>
+
+<script>
+const memories = document.querySelectorAll('.memory');
+const container = document.querySelector('.orbit');
+
+let rotating = true;
+
+/* ================= ROTACIÓN ================= */
+let angle = 0;
+function rotate() {
+  if (rotating) {
+    angle += 0.05;
+    container.style.transform = `rotate(${angle}deg)`;
+  }
+  requestAnimationFrame(rotate);
+}
+rotate();
+
+/* ========== PAUSA AL HOVER ========== */
+container.addEventListener('mouseenter', () => rotating = false);
+container.addEventListener('mouseleave', () => rotating = true);
+
+/* ========== CLICK EN MEMORIA ========== */
+memories.forEach(mem => {
+  mem.addEventListener('click', () => expandMemory(mem));
+});
+
+function expandMemory(mem) {
+  rotating = false;
+
+  // Quitar selección previa
+  memories.forEach(m => m.classList.remove('active'));
+
+  mem.classList.add('active');
+
+  const video = mem.querySelector('video');
+  const img = mem.querySelector('img');
+
+  if (video) {
+    video.currentTime = 0;
+    video.play();
+    let plays = 0;
+
+    video.onended = () => {
+      plays++;
+      if (plays < 2) {
+        video.currentTime = 0;
+        video.play();
+      } else {
+        resetMemory(mem);
+      }
+    };
+  }
+
+  if (img) {
+    setTimeout(() => resetMemory(mem), 15000);
+  }
+}
+
+function resetMemory(mem) {
+  mem.classList.remove('active');
+  rotating = true;
+}
+</script>
+<button id="backMenuBtn" type="button">
+  <span class="icon">⟵</span>
+  <span class="text">Menu</span>
+</button>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const backBtn = document.getElementById('backMenuBtn');
+
+  if (!backBtn) {
+    console.error('BOTÓN NO ENCONTRADO');
+    return;
+  }
+
+  backBtn.addEventListener('click', () => {
+    window.location.href = 'menu.html';
+  });
+});
+</script>
+<script>
+  sessionStorage.setItem("memoriesOpened", "true");
+</script>
+
+</body>
+</html>

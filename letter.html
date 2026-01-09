@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Letter</title>
+
+  <!-- Google cursive font -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="letter.css">
+</head>
+
+<body>
+<div class="cinema-bg"></div>
+<div class="cinema-grain"></div>
+<div class="cinema-stars"></div>
+
+  <div class="letter-container">
+    <div class="envelope" id="envelope">
+
+      <div class="letter-front">
+        <p class="to-text">
+          To the man who had the audacity of stealing half of my heart and bringing it with him to the other side of the world…
+        </p>
+        <div class="seal" id="seal">❤</div>
+      </div>
+
+      <div class="letter-inside">
+        <div class="letter-paper">
+          <p id="letterText"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Your JS -->
+  <script src="script1.js" defer></script>
+
+  <div class="floating-lights"></div>
+
+  <button class="menu-btn" onclick="goToMenu()">
+  ← Menu
+</button>
+<script>
+  sessionStorage.setItem("letterOpened", "true");
+</script>
+</body>
+</html>

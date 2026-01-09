@@ -1,0 +1,295 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Playfair+Display:ital@1&family=Great+Vibes&display=swap');
+
+/* =========================
+   GLOBAL
+========================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* =========================
+   CINEMATIC BACKGROUND
+========================= */
+
+body {
+  background: #05040a;
+  overflow: hidden;
+}
+
+/* MAIN GRADIENT */
+.cinema-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center,
+      rgba(140,110,180,0.35) 0%,
+      rgba(60,40,90,0.35) 25%,
+      rgba(20,15,35,0.8) 55%,
+      rgba(5,4,10,1) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #2b1c3f,
+      #120a1e,
+      #05040a
+    );
+  z-index: 0;
+}
+
+/* FLOATING LIGHT PARTICLES */
+.cinema-stars {
+  position: fixed;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,230,200,0.12) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,200,255,0.08) 1px, transparent 2px);
+  background-size: 120px 120px, 180px 180px;
+  animation: drift 180s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-40%); }
+}
+
+/* FILM GRAIN */
+.cinema-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(
+      circle,
+      rgba(255,255,255,0.015),
+      rgba(0,0,0,0.015) 1px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+/* MAKE SURE LETTER IS ABOVE EVERYTHING */
+.letter-container {
+  position: relative;
+  z-index: 5;
+}
+
+/* =========================
+   LETTER CONTAINER
+========================= */
+.letter-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+/* =========================
+   ENVELOPE
+========================= */
+.envelope {
+  width: 800px;
+  height: 560px;
+  position: relative;
+  perspective: 1400px;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   FRONT & INSIDE
+========================= */
+.letter-front,
+.letter-inside {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fffaf3, #efe1cf);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+  transition: transform 1.4s cubic-bezier(.4,0,.2,1);
+  backface-visibility: hidden;
+}
+
+.letter-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  text-align: center;
+}
+
+/* =========================
+   FRONT TEXT
+========================= */
+.to-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  line-height: 1.7;
+  color: #3a2c23;
+  margin-bottom: 50px;
+}
+
+/* =========================
+   SEAL
+========================= */
+.seal {
+  width: 78px;
+  height: 78px;
+  background: radial-gradient(circle at top, #c92525, #7a0f0f);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffe6f0;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(200,40,60,0.8);
+  animation: sealPulse 2.8s infinite;
+  transition: transform 0.4s ease;
+}
+
+.seal:hover {
+  transform: scale(1.15) rotate(-2deg);
+}
+
+@keyframes sealPulse {
+  0% { box-shadow: 0 0 0 rgba(200,40,60,0.4); }
+  50% { box-shadow: 0 0 30px rgba(200,40,60,0.9); }
+  100% { box-shadow: 0 0 0 rgba(200,40,60,0.4); }
+}
+
+/* =========================
+   INSIDE
+========================= */
+.letter-inside {
+  transform: rotateY(180deg);
+  padding: 70px 90px;
+}
+
+.envelope.open .letter-front {
+  transform: rotateY(-180deg);
+}
+
+.envelope.open .letter-inside {
+  transform: rotateY(0deg);
+}
+
+/* =========================
+   PAPER
+========================= */
+.letter-paper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* subtle paper texture */
+.letter-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* =========================
+   LETTER TEXT
+========================= */
+#letterText {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 26px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: #2b1e18;
+  white-space: pre-line;
+}
+/* =========================
+   BACK TO MENU BUTTON
+========================= */
+
+.menu-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 32px;
+  padding: 14px 28px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #f7e9dc;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(120,70,140,0.45),
+      rgba(40,20,60,0.85)
+    );
+
+  border: 1px solid rgba(255,220,200,0.35);
+  border-radius: 40px;
+
+  cursor: pointer;
+  z-index: 10;
+
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 0 18px rgba(255,200,220,0.35),
+    0 0 45px rgba(140,90,200,0.25);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+/* HOVER = romantic glow */
+.menu-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 0 28px rgba(255,210,230,0.6),
+    0 0 70px rgba(160,110,230,0.5);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(160,100,190,0.6),
+      rgba(60,30,90,0.95)
+    );
+}
+
+/* SOFT BREATHING ANIMATION */
+.menu-btn {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 18px rgba(255,200,220,0.35),
+      0 0 45px rgba(140,90,200,0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(255,210,230,0.55),
+      0 0 80px rgba(170,120,240,0.4);
+  }
+}

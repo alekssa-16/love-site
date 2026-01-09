@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Choose</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="menu-container">
+    <h1 class="menu-title">Where would you like to go?</h1>
+
+    <div class="menu-grid">
+      <a href="letter.html" class="menu-card">💌 Letter</a>
+      <a href="memories.html" class="menu-card">📸 Memories</a>
+      <a href="music.html" class="menu-card">🎶 Music</a>
+      <a href="surprise.html" class="menu-card" id="surpriseBtn">❓</a>
+      
+
+  </div>
+</div>
+<script>
+  const surpriseBtn = document.getElementById("surpriseBtn");
+
+  surpriseBtn.addEventListener("click", (e) => {
+    const memories = sessionStorage.getItem("memoriesOpened");
+    const letter   = sessionStorage.getItem("letterOpened");
+    const music    = sessionStorage.getItem("musicOpened");
+
+    if (!memories || !letter || !music) {
+      e.preventDefault();
+      alert("✨ Primero descubre Letter, Memories y Music ✨");
+    }
+  });
+</script>
+</body>
+</html>

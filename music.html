@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Music 🎵</title>
+  <link rel="stylesheet" href="music.css">
+</head>
+<body>
+<div class="music-title">
+  Music has been connecting us<br>
+  since the very beginning ✨
+</div>
+
+  <div class="music-layout">
+
+    <!-- LEFT GALLERY -->
+    <div class="gallery left">
+      <img src="images/cover1.jpg">
+      <img src="images/cover2.jpg">
+      <img src="images/cover3.jpg">
+      <img src="images/cover4.jpg">
+    </div>
+
+    <!-- CENTER DISC -->
+    <div class="center">
+      <div class="disc-wrapper">
+        <img id="disc" src="images/cover0.jpg" alt="disc">
+      </div>
+      <div class="song-title">My Voice</div>
+      <button id="playBtn">Play</button>
+    </div>
+
+    <!-- RIGHT GALLERY -->
+    <div class="gallery right">
+      <img src="images/cover5.jpg">
+      <img src="images/cover6.jpg">
+      <img src="images/cover7.jpg">
+      <img src="images/cover9.jpg">
+    </div>
+
+  </div>
+
+  <audio id="audio" src="audio/song0.mp3"></audio>
+
+  <script src="music.js"></script>
+  <button class="back-menu" onclick="goBack()">← Menu</button>
+<script>
+  sessionStorage.setItem("musicOpened", "true");
+</script>
+</body>
+</html>
